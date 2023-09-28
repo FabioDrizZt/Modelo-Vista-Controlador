@@ -11,14 +11,13 @@ class ProductModel
   public function getAllProducts()
   {
     session_start();
-    return $_SESSION['products'] ?? $this->products;
+    $_SESSION['products'] =  $_SESSION['products'] ?? $this->products;
+    return $_SESSION['products'];
   }
 
   public function addProduct($product)
   {
     session_start();
-    $this->products[] = $product;
-    // Actualizar la lista de productos en la sesión
-    $_SESSION['products'] = $this->products;
+    $_SESSION['products'][] = $product;
   }
 }
